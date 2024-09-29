@@ -109,12 +109,8 @@ class Snake(GameObject):
 
     def __init__(self):
         super().__init__()
-        self.length = 1
-        self.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
+        self.reset()
         self.direction = RIGHT
-        self.next_direction = None
-        self.body_color = SNAKE_COLOR
-        self.last = None
 
     def update_direction(self):
         """Метод, который задаёт новое направление нашей змейке."""
@@ -178,8 +174,11 @@ class Snake(GameObject):
         В игровом цикле используем для условия:
         'змея врезалась в свое тело'.
         """
-        self.length
-        self.positions
+        self.length = 1
+        self.positions = [((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))]
+        self.next_direction = None
+        self.body_color = SNAKE_COLOR
+        self.last = None
         directions = [RIGHT, LEFT, UP, DOWN]
         self.direction = choice(directions)
 
