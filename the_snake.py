@@ -1,5 +1,7 @@
 from random import choice, randint
 
+from typing import List
+
 import pygame as pg
 
 # Константы для размеров поля и сетки:
@@ -10,25 +12,28 @@ GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
 GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
 
 # Направления движения:
-UP = (0, -1)
-DOWN = (0, 1)
-LEFT = (-1, 0)
-RIGHT = (1, 0)
+UP: tuple = (0, -1)
+DOWN: tuple = (0, 1)
+LEFT: tuple = (-1, 0)
+RIGHT: tuple = (1, 0)
+
+# Направления движения, хранящиеся в кортеже, используются для метода reset().
+DIRECTIONS: tuple = (RIGHT, LEFT, UP, DOWN)
 
 # Цвет фона - черный:
-BOARD_BACKGROUND_COLOR = (0, 0, 0)
+BOARD_BACKGROUND_COLOR: tuple = (0, 0, 0)
 
 # Цвет границы ячейки
-BORDER_COLOR = (93, 216, 228)
+BORDER_COLOR: tuple = (93, 216, 228)
 
 # Цвет яблока
-APPLE_COLOR = (0, 204, 0)
+APPLE_COLOR: tuple = (0, 204, 0)
 
 # Цвет змейки
-SNAKE_COLOR = (0, 0, 153)
+SNAKE_COLOR: tuple = (0, 0, 153)
 
 # Скорость движения змейки:
-SPEED = 20
+SPEED: int = 20
 
 # Настройка игрового окна:
 screen = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), 0, 32)
@@ -40,7 +45,7 @@ pg.display.set_caption('Змейка')
 clock = pg.time.Clock()
 
 
-def handle_keys(game_object):
+def handle_keys(game_object) -> None:
     """Объявляем функцию handle keys, которая обрабатывает нажатия клавиш,
     чтобы изменить направление движения змейки.
     """
@@ -62,11 +67,11 @@ def handle_keys(game_object):
 class GameObject:
     """Объявляем родительсикй класс GameObject, в нем хранятся два метода."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.position = ((SCREEN_WIDTH // 2), (SCREEN_HEIGHT // 2))
         self.body_color = None
 
-    def draw(self):
+    def draw(self) -> None:
         """Метод draw пустой - предполагает,
         что в доч. классах его переопределят.
         """
@@ -85,7 +90,7 @@ class Apple(GameObject):
         self.body_color = APPLE_COLOR
         self.randomize_position()
 
-    def randomize_position(self):
+    def randomize_position(self) -> None:
         """Метод предназачен для случайного определения яблочка на поле.
         Используется в инициализаторе класса, как значение position.
         """
@@ -107,7 +112,7 @@ class Snake(GameObject):
     передвижение, зарисовку, повороты и сброс змейки до начальных значений.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.reset()
         self.direction = RIGHT
@@ -118,13 +123,13 @@ class Snake(GameObject):
             self.direction = self.next_direction
             self.next_direction = None
 
-    def get_head_position(self):
+    def get_head_position(self) -> List[tuple[int]]:
         """Метод, который возвращает 1 элемент списка -
         которым является голова змейки.
         """
         return self.positions[0]
 
-    def move(self):
+    def move(self) -> None:
         """Метод, отвечающий за передвижение змейки.
         В зависимости направления змейки, наша змейка(список) меняется,
         в начало добавляются новые координаты, а в конце - убираем старые.
@@ -179,8 +184,7 @@ class Snake(GameObject):
         self.next_direction = None
         self.body_color = SNAKE_COLOR
         self.last = None
-        directions = [RIGHT, LEFT, UP, DOWN]
-        self.direction = choice(directions)
+        self.direction = choice(DIRECTIONS)
 
 
 def main():
