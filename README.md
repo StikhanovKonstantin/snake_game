@@ -15,7 +15,7 @@
 
    
 ```
-   git clone https://github.com/ваш-аккаунт/snake-game.git
+   git clone git@github.com:StikhanovKonstantin/snake_game.git
    cd snake-game
 ```
    
@@ -36,7 +36,7 @@
 
    
 ```
-   pip install pygame
+   pip install requirements.txt
 ```
    
 
@@ -54,11 +54,12 @@ python main.py
 
 ## Структура проекта
 
-- main.py: основной файл для запуска игры.
-- snake.py: логика змейки.
-- food.py: логика еды.
-- game.py: управление игровым процессом.
-- resources/: графика и звуки.
-
+- the_snake.py: основной файл для запуска игры.
+- tests/: тесты для проверки функциональности.
+- .gitignore: файл, определяющий игнорируемые файлы в git.
+- README.md: документация проекта.
+- pytest.ini: конфигурация для тестирования с помощью pytest.
+- requirements.txt: зависимости проекта.
+- setup.cfg: конфигурационный файл для настройки проекта.
 
 Наслаждайтесь игрой и улучшайте свои навыки программирования!
