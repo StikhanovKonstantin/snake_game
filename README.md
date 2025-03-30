@@ -45,7 +45,7 @@
 Запустите игру:
 
 ```
-python main.py
+python the_snake.py
 ```
 
 -- Пример игрового процесса
