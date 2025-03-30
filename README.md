@@ -50,7 +50,8 @@ python the_snake.py
 
 -- Пример игрового процесса
 
-!Скриншот игры
+![image](https://github.com/user-attachments/assets/095ecb2b-d7e2-4ce3-8bd2-a5f202d2afd9)
+
 
 ## Структура проекта
 
